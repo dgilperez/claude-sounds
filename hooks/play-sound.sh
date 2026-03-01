@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # play-sound.sh — Cross-platform sound player for claude-sounds plugin
 # Usage: play-sound.sh <sound-name>
 # Example: play-sound.sh session-start
@@ -32,7 +32,11 @@ play_sound() {
   local file="$1"
   case "$(uname -s)" in
     Darwin)
-      afplay "$file" &>/dev/null &
+      if command -v ffplay &>/dev/null; then
+        nohup ffplay -nodisp -autoexit -loglevel quiet "$file" &>/dev/null &
+      else
+        nohup afplay "$file" &>/dev/null &
+      fi
       ;;
     Linux)
       if command -v ffplay &>/dev/null; then

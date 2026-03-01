@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # toggle.sh — Enable/disable claude-sounds plugin
 # Usage: toggle.sh [on|off|status|toggle]
 
