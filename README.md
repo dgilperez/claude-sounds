@@ -2,7 +2,7 @@
 
 Sound notifications for [Claude Code](https://claude.ai/claude-code) hook events.
 
-Plays a sound when Claude starts a session, finishes responding, sends a notification, or a subagent completes a task. Works on macOS out of the box. Linux and Windows require a compatible audio player (see below).
+Plays a sound when Claude starts a session, finishes responding, or sends a notification. Works on macOS out of the box. Linux and Windows require a compatible audio player (see below).
 
 ## Installation
 
@@ -24,13 +24,12 @@ Then register the hooks in `~/.claude/settings.json`:
     ],
     "Notification": [
       {"hooks": [{"type": "command", "command": "~/.claude/plugins/claude-sounds/hooks/play-sound.sh acknowledged"}]}
-    ],
-    "SubagentStop": [
-      {"hooks": [{"type": "command", "command": "~/.claude/plugins/claude-sounds/hooks/play-sound.sh task-complete"}]}
     ]
   }
 }
 ```
+
+> **Note:** `SubagentStop` is intentionally excluded. In multiagent and background workflows, each subagent fires this event on completion, causing a barrage of overlapping sounds. The `Stop` hook on the main conversation is sufficient.
 
 Restart Claude Code for the hooks to take effect.
 
@@ -39,7 +38,7 @@ Restart Claude Code for the hooks to take effect.
 | File | Default mapping | Description |
 |------|----------------|-------------|
 | `session-start.mp3` | `SessionStart` | New session started |
-| `task-complete.mp3` | `Stop`, `SubagentStop` | Claude finished responding |
+| `task-complete.mp3` | `Stop` | Claude finished responding |
 | `acknowledged.mp3` | `Notification` | Claude notification |
 | `error.mp3` | — | Available for custom mapping |
 | `alarm.mp3` | — | Available for custom mapping |
