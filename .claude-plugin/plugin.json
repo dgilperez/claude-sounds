@@ -1,0 +1,7 @@
+{
+  "name": "claude-sounds",
+  "version": "1.0.0",
+  "description": "Sound notifications for Claude Code hook events. Cross-platform: macOS, Linux, Windows.",
+  "author": { "name": "David Gil-Pérez", "github": "dgilperez" },
+  "license": "MIT"
+}
