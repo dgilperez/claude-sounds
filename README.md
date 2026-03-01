@@ -96,6 +96,10 @@ Uses Windows Media Player via PowerShell, which is available on all Windows vers
 
 Swap out any `.mp3` in `sounds/` with a file of the same name. The hook picks it up immediately — no restart needed.
 
+## Inspiration
+
+My setup uses voice clips from the classic [Commandos](https://en.wikipedia.org/wiki/Commandos_(series)) game (Pyro Studios, 1998) — "vale", "ya voy", "voy para allá". Grab them from [soundinstants.com](https://soundinstants.com/search/commander). Not redistributable, but perfect locally.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
