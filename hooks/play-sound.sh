@@ -17,8 +17,8 @@ if [[ -f "$CONFIG_FILE" ]]; then
   fi
 fi
 
-# Validate sound name
-if [[ -z "$SOUND_NAME" ]]; then
+# Validate sound name: alphanumeric and hyphens only, no path traversal
+if [[ -z "$SOUND_NAME" || ! "$SOUND_NAME" =~ ^[a-zA-Z0-9_-]+$ ]]; then
   exit 0
 fi
 
@@ -47,9 +47,11 @@ play_sound() {
       ;;
     CYGWIN*|MINGW*|MSYS*)
       # Windows: PowerShell with WMP COM object for MP3 support
+      # Escape single quotes in the path to prevent injection
+      local escaped_file="${file//\'/\'\'}"
       powershell.exe -WindowStyle Hidden -Command "
         \$wmp = New-Object -ComObject WMPlayer.OCX
-        \$wmp.URL = '$file'
+        \$wmp.URL = '${escaped_file}'
         \$wmp.controls.play()
         Start-Sleep -Seconds 5
         \$wmp.controls.stop()
